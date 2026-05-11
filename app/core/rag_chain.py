@@ -2,7 +2,8 @@
 import os
 from dotenv import load_dotenv
 load_dotenv()
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_qdrant import FastEmbedSparse
+from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 #the rag chain needs the same embedding model as ingestion, when the student asks a question, we convert their question to a vector using the exact model we used to embed papers
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
@@ -27,11 +28,7 @@ EMBEDDING_MODEL='all-miniLM-L6-v2'
 #block 3: load the vector store
 def load_vectorstore():
     "Connect to Qdrant and load the vector store for retrieval."
-    embeddings=HuggingFaceEmbeddings(
-        model_name=EMBEDDING_MODEL,
-        model_kwargs={"device": "cpu"},
-        encode_kwargs={"normalize_embeddings": True}
-    )
+    embeddings = FastEmbedEmbeddings(model_name="BAAI/bge-small-en-v1.5")
 #we are loading huggingface model into memory, since we have already downloaded it during ingestion, this is instant, no download needed
     client=QdrantClient(
         url=os.getenv("QDRANT_URL"),

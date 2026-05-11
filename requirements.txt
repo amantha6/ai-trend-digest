@@ -6,14 +6,12 @@ langchain==0.3.29
 langchain-core==0.3.85
 langchain-community==0.3.31
 langchain-groq==0.3.8
-langchain-huggingface==0.3.1
 langchain-qdrant==0.2.1
 langchain-text-splitters==0.3.11
 langsmith==0.4.37
 qdrant-client==1.16.1
-sentence-transformers==5.1.2
+fastembed==0.4.2
 groq==0.37.1
 pydantic==2.13.4
-pydantic-settings==2.11.0
 httpx==0.28.1
 starlette==0.49.3
